@@ -109,9 +109,9 @@ else
     rm -rf $projdir/src/pigz/
 fi
 
-###### Compile Scaff10x sources ######
+###### Compile AncesBin sources ######
 
-echo; echo "Compiling bin10X sources"
+echo; echo "Compiling AncesBin sources"
 
 
 srcs=( bin10X binHiC binLong seqbin_fastq seqbin_split seqbin_reads seqbin_bcodes seqbin_binreads seqbin_binlong seqbin_getlong seqbin_rename)
