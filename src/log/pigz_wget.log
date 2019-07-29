@@ -1,0 +1,15 @@
+--2019-07-29 14:38:00--  https://zlib.net/pigz/pigz-2.4.tar.gz
+Resolving wwwcache.sanger.ac.uk (wwwcache.sanger.ac.uk)... 172.18.24.1, 172.18.24.2
+Connecting to wwwcache.sanger.ac.uk (wwwcache.sanger.ac.uk)|172.18.24.1|:3128... connected.
+Proxy request sent, awaiting response... 200 OK
+Length: 98234 (96K) [application/x-gzip]
+Saving to: ‘pigz-2.4.tar.gz’
+
+     0K .......... .......... .......... .......... .......... 52%  156K 0s
+    50K .......... .......... .......... .......... .....     100%  135K=0.7s
+
+2019-07-29 14:38:01 (145 KB/s) - ‘pigz-2.4.tar.gz’ saved [98234/98234]
+
+FINISHED --2019-07-29 14:38:01--
+Total wall clock time: 1.4s
+Downloaded: 1 files, 96K in 0.7s (145 KB/s)

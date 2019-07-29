@@ -1,0 +1,50 @@
++++ Cleaning All ... 
++++ Compiling All ... 
+gcc -O2 -march=x86-64 -mtune=generic  -c bin10X.c -o bin10X.o
+bin10X.c: In function ‘main’:
+bin10X.c:301:12: warning: ignoring return value of ‘fgets’, declared with attribute warn_unused_result [-Wunused-result]
+bin10X.c:428:15: warning: ignoring return value of ‘fgets’, declared with attribute warn_unused_result [-Wunused-result]
+bin10X.c:548:15: warning: ignoring return value of ‘fgets’, declared with attribute warn_unused_result [-Wunused-result]
+bin10X.c:617:12: warning: ignoring return value of ‘chdir’, declared with attribute warn_unused_result [-Wunused-result]
+gcc -O2 -march=x86-64 -mtune=generic  -c binHiC.c -o binHiC.o
+binHiC.c: In function ‘main’:
+binHiC.c:376:12: warning: ignoring return value of ‘fgets’, declared with attribute warn_unused_result [-Wunused-result]
+binHiC.c:500:12: warning: ignoring return value of ‘chdir’, declared with attribute warn_unused_result [-Wunused-result]
+gcc -O2 -march=x86-64 -mtune=generic  -c binLong.c -o binLong.o
+binLong.c: In function ‘main’:
+binLong.c:330:12: warning: ignoring return value of ‘fgets’, declared with attribute warn_unused_result [-Wunused-result]
+binLong.c:465:12: warning: ignoring return value of ‘chdir’, declared with attribute warn_unused_result [-Wunused-result]
+gcc -O2 -march=x86-64 -mtune=generic  -c seqbin_fastq.c -o seqbin_fastq.o
+seqbin_fastq.c: In function ‘main’:
+seqbin_fastq.c:190:12: warning: ignoring return value of ‘fgets’, declared with attribute warn_unused_result [-Wunused-result]
+seqbin_fastq.c:338:15: warning: ignoring return value of ‘fgets’, declared with attribute warn_unused_result [-Wunused-result]
+seqbin_fastq.c:485:12: warning: ignoring return value of ‘chdir’, declared with attribute warn_unused_result [-Wunused-result]
+gcc -O2 -march=x86-64 -mtune=generic  -c seqbin_split.c -o seqbin_split.o
+seqbin_split.c: In function ‘Align_Process’:
+seqbin_split.c:185:13: warning: ignoring return value of ‘fgets’, declared with attribute warn_unused_result [-Wunused-result]
+gcc -O2 -march=x86-64 -mtune=generic  -c seqbin_reads.c -o seqbin_reads.o
+seqbin_reads.c: In function ‘main’:
+seqbin_reads.c:80:11: warning: ignoring return value of ‘system’, declared with attribute warn_unused_result [-Wunused-result]
+seqbin_reads.c:145:12: warning: ignoring return value of ‘fgets’, declared with attribute warn_unused_result [-Wunused-result]
+gcc -O2 -march=x86-64 -mtune=generic  -c seqbin_bcodes.c -o seqbin_bcodes.o
+seqbin_bcodes.c: In function ‘main’:
+seqbin_bcodes.c:79:11: warning: ignoring return value of ‘system’, declared with attribute warn_unused_result [-Wunused-result]
+gcc -O2 -march=x86-64 -mtune=generic  -c seqbin_binreads.c -o seqbin_binreads.o
+seqbin_binreads.c: In function ‘main’:
+seqbin_binreads.c:88:11: warning: ignoring return value of ‘system’, declared with attribute warn_unused_result [-Wunused-result]
+seqbin_binreads.c:146:12: warning: ignoring return value of ‘fgets’, declared with attribute warn_unused_result [-Wunused-result]
+gcc -O2 -march=x86-64 -mtune=generic  -c seqbin_binlong.c -o seqbin_binlong.o
+seqbin_binlong.c: In function ‘Readname_match’:
+seqbin_binlong.c:394:13: warning: ignoring return value of ‘fgets’, declared with attribute warn_unused_result [-Wunused-result]
+seqbin_binlong.c: In function ‘main’:
+seqbin_binlong.c:92:11: warning: ignoring return value of ‘system’, declared with attribute warn_unused_result [-Wunused-result]
+seqbin_binlong.c:150:12: warning: ignoring return value of ‘fgets’, declared with attribute warn_unused_result [-Wunused-result]
+gcc -O2 -march=x86-64 -mtune=generic  -c seqbin_getlong.c -o seqbin_getlong.o
+seqbin_getlong.c: In function ‘main’:
+seqbin_getlong.c:79:11: warning: ignoring return value of ‘system’, declared with attribute warn_unused_result [-Wunused-result]
+seqbin_getlong.c:136:12: warning: ignoring return value of ‘fgets’, declared with attribute warn_unused_result [-Wunused-result]
+gcc -O2 -march=x86-64 -mtune=generic  -c seqbin_rename.c -o seqbin_rename.o
+gcc -O2 -march=x86-64 -mtune=generic  -c fast.c -o fast.o
+for exe in bin10X binHiC binLong seqbin_fastq seqbin_split seqbin_reads seqbin_bcodes seqbin_binreads seqbin_binlong seqbin_getlong seqbin_rename;  do gcc -O2 -march=x86-64 -mtune=generic  -o $exe $exe.o fast.o -lm -pthread -lz; cp $exe seqbin-bin/.; done
++++ Cleaning Up ... 
+All Done 
