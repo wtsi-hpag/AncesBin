@@ -398,8 +398,8 @@ int main(int argc, char **argv)
     }
 
     memset(syscmd,'\0',2000);
-//    sprintf(syscmd,"%s/bwa index tarseq.fasta > try.out",bindir);
-    sprintf(syscmd,"cp /lustre/scratch117/sciops/team117/hpag/zn1/project/mammals/mBosTau1/tmp_rununik_11451/tarseq.fasta.* . > try.out");
+    sprintf(syscmd,"%s/bwa index tarseq.fasta > try.out",bindir);
+//    sprintf(syscmd,"cp /lustre/scratch117/sciops/team117/hpag/zn1/project/mammals/mBosTau1/tmp_rununik_11451/tarseq.fasta.* . > try.out");
     RunSystemCommand(syscmd);
 
     for(i=0;i<n_r1;i++)
