@@ -45,7 +45,7 @@ fi
 
 
 ##### Download and install SMALT ######
-echo; echo "Downloading  and installing Smalt"
+echo; echo "Downloading and installing Smalt"
 if [[ ! -s $bindir/smalt ]]; then
    
     if [[ ! -d $projdir/src/smalt-0.7.4 ]]; then
