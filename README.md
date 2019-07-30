@@ -63,9 +63,6 @@ q2=/lustre/scratch116/vr/projects/Tes1_S4_L008_R2_001.fastq.gz \
              nodes:              number of CPUs requested  [ default = 30 ]
              MAT_ref.fasta:      ancestry MAT assembly 
              PAT_ref.fasta:      ancestry PAT assembly 
-                Note:            you need to rename the assembly file:
-                                 $ /full/path/to/AncesBin/src/scaff-bin/seqbin_rename -name MAT MAT_assembly.fa MAT_ref.fasta 
-                                 $ /full/path/to/AncesBin/src/scaff-bin/seqbin_rename -name PAT PAT_assembly.fa PAT_ref.fasta
              Input_read_1.fq.gz: gzipped HiC read 1 
              Input_read_2.fq.gz: gzipped HiC read 2
              Output_directory:   a director contained all the binned HiC reads\n");
@@ -80,9 +77,6 @@ q2=/lustre/scratch116/vr/projects/Tes1_S4_L008_R2_001.fastq.gz \
              nodes:            number of CPUs requested  [ default = 30 ]
              MAT_ref.fasta:    ancestry MAT assembly 
              PAT_ref.fasta:    ancestry PAT assembly 
-                Note:          you need to rename the assembly file:
-                               $ /full/path/to/AncesBin/src/scaff-bin/seqbin_rename -name MAT MAT_assembly.fa MAT_ref.fasta 
-                               $ /full/path/to/AncesBin/src/scaff-bin/seqbin_rename -name PAT PAT_assembly.fa PAT_ref.fasta
              Input_data_file:  a text file to point the locations of the reads in gzipped files\n");
 
 /lustre/fTakRub1/PacBio/fasta/m54097_180320_123755.subreads.fasta.gz \
