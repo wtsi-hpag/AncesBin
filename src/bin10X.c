@@ -380,6 +380,12 @@ int main(int argc, char **argv)
 //      printf("file: %d %s \n",n_r2,R2_Name[n_r2]);
           n_r2++;
         }
+        else
+        {
+          printf("Change data file format as it does not start with q1= or q2= see: \n");
+          printf("q1=/lustre/scratch116/vr/projects/Tes1_S1_L008_R1_001.fastq.gz \n");
+          printf("q2=/lustre/scratch116/vr/projects/Tes1_S1_L008_R2_001.fastq.gz \n");
+        }
         i++;
     }
     fclose(namef);
@@ -414,7 +420,7 @@ int main(int argc, char **argv)
        RunSystemCommand(syscmd);
 
        memset(syscmd,'\0',2000);
-       sprintf(syscmd,"ls -lrt split-reads_1_* | awk '{print $9}' > name1.dat");
+       sprintf(syscmd,"ls -lrt split-reads_1_* | awk '{print $9}' | sort > name1.dat");
        RunSystemCommand(syscmd);
 
        nseq=0;
@@ -534,7 +540,7 @@ int main(int argc, char **argv)
        RunSystemCommand(syscmd);
 
        memset(syscmd,'\0',2000);
-       sprintf(syscmd,"ls -lrt split-reads_2_* | awk '{print $9}' > name2.dat");
+       sprintf(syscmd,"ls -lrt split-reads_2_* | awk '{print $9}' | sort > name2.dat");
        RunSystemCommand(syscmd);
 
        nseq=0;
