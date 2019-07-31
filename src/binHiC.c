@@ -346,11 +346,12 @@ int main(int argc, char **argv)
     RunSystemCommand(syscmd);
     
     memset(syscmd,'\0',2000);
-    sprintf(syscmd,"%s/seqbin_split -split 50000000 HiC-reads_1 HiC-reads_1.fq",bindir);
+//    sprintf(syscmd,"%s/seqbin_split -split 50000000 HiC-reads_1 HiC-reads_1.fq",bindir);
+    sprintf(syscmd,"%s/seqbin_split -split 1000000 HiC-reads_1 HiC-reads_1.fq",bindir);
     RunSystemCommand(syscmd);
     
     memset(syscmd,'\0',2000);
-    sprintf(syscmd,"%s/seqbin_split -split 50000000 HiC-reads_2 HiC-reads_2.fq",bindir);
+    sprintf(syscmd,"%s/seqbin_split -split 1000000 HiC-reads_2 HiC-reads_2.fq",bindir);
     RunSystemCommand(syscmd);
     
     memset(syscmd,'\0',2000);
@@ -358,11 +359,11 @@ int main(int argc, char **argv)
     RunSystemCommand(syscmd);
 
     memset(syscmd,'\0',2000);
-    sprintf(syscmd,"ls -lrt HiC-reads_1_* | awk '{print $9}' > name1.dat");
+    sprintf(syscmd,"ls -lrt HiC-reads_1_* | awk '{print $9}' | sort > name1.dat");
     RunSystemCommand(syscmd);
 
     memset(syscmd,'\0',2000);
-    sprintf(syscmd,"ls -lrt HiC-reads_2_* | awk '{print $9}' > name2.dat");
+    sprintf(syscmd,"ls -lrt HiC-reads_2_* | awk '{print $9}' | sort > name2.dat");
     RunSystemCommand(syscmd);
 
     nseq=0;
@@ -413,13 +414,15 @@ int main(int argc, char **argv)
       printf("Name: %d %s %s \n",i,S_Name[i],R_Name[i]);
 
     memset(syscmd,'\0',2000);
+//    sprintf(syscmd,"cp /lustre/scratch117/sciops/team117/hpag/zn1/project/mule/HiC/tmp_rununik_26753/tarseq.fasta.* . > try.out");
     sprintf(syscmd,"%s/bwa index tarseq.fasta > try.out",bindir);
     RunSystemCommand(syscmd);
 
     for(i=0;i<nseq;i++)
     {
        memset(syscmd,'\0',2000);
-       sprintf(syscmd,"%s/bwa mem -t %d tarseq.fasta %s %s | %s | awk '%s' | egrep -v '^@' > align.dat",bindir,n_nodes,S_Name[i],R_Name[i],"egrep 'MAT_|PAT_'","($2<200){print $5,100,$1,$3,$2}");
+//       sprintf(syscmd,"%s/bwa mem -t %d tarseq.fasta %s %s | %s | awk '%s' | egrep -v '^@' > align.dat",bindir,n_nodes,S_Name[i],R_Name[i],"egrep 'MAT_|PAT_'","($2<200){print $5,100,$1,$3,$2}");
+       sprintf(syscmd,"%s/bwa mem -t %d -5SPM tarseq.fasta %s %s | awk '%s' | egrep -v '^@' > align.dat",bindir,n_nodes,S_Name[i],R_Name[i],"($2<200){print $5,100,$1,$3,$2}");
       printf("Command: %s \n",syscmd);
        RunSystemCommand(syscmd);
 
@@ -442,10 +445,18 @@ int main(int argc, char **argv)
        memset(syscmd,'\0',2000);
        sprintf(syscmd,"%s/seqbin_reads PAT.dat %s %s.PAT > try.out",bindir,R_Name[i],R_Name[i]);
        RunSystemCommand(syscmd);
+
+       memset(syscmd,'\0',2000);
+       sprintf(syscmd,"rm -rf %s %s",S_Name[i],R_Name[i]);
+       RunSystemCommand(syscmd);
     }
 
     memset(syscmd,'\0',2000);
     sprintf(syscmd,"cat HiC-reads_1*.MAT > reads_1.MAT");
+    RunSystemCommand(syscmd);
+
+    memset(syscmd,'\0',2000);
+    sprintf(syscmd,"rm -rf HiC-reads_1*.MAT");
     RunSystemCommand(syscmd);
 
     memset(syscmd,'\0',2000);
@@ -457,6 +468,10 @@ int main(int argc, char **argv)
     RunSystemCommand(syscmd);
 
     memset(syscmd,'\0',2000);
+    sprintf(syscmd,"rm -rf HiC-reads_2*.MAT");
+    RunSystemCommand(syscmd);
+
+    memset(syscmd,'\0',2000);
     sprintf(syscmd,"%s/pigz reads_2.MAT > try.out",bindir);
     RunSystemCommand(syscmd);
 
@@ -465,11 +480,19 @@ int main(int argc, char **argv)
     RunSystemCommand(syscmd);
 
     memset(syscmd,'\0',2000);
+    sprintf(syscmd,"rm -rf HiC-reads_1*.PAT");
+    RunSystemCommand(syscmd);
+
+    memset(syscmd,'\0',2000);
     sprintf(syscmd,"%s/pigz reads_1.PAT > try.out",bindir);
     RunSystemCommand(syscmd);
 
     memset(syscmd,'\0',2000);
     sprintf(syscmd,"cat HiC-reads_2*.PAT > reads_2.PAT");
+    RunSystemCommand(syscmd);
+
+    memset(syscmd,'\0',2000);
+    sprintf(syscmd,"rm -rf HiC-reads_2*.PAT");
     RunSystemCommand(syscmd);
 
     memset(syscmd,'\0',2000);
