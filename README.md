@@ -57,7 +57,7 @@ q2=/lustre/scratch116/vr/projects/Tes1_S4_L008_R2_001.fastq.gz \
 
 #### Run binHiC:
            
-	   $ /full/path/to/AncesBin/src/binHiC -nodes 30 MAT_ref.fasta PAT_ref.fasta Input_read_1.fq.gz Input_read_2.fq.gz Output_directory  \
+	   $ /full/path/to/AncesBin/src/binHiC -nodes 30 MAT_ref.fasta PAT_ref.fasta Input_read_1.fq.gz Input_read_2.fq.gz Output_head  \
 
            Parameters:
              nodes:              number of CPUs requested  [ default = 30 ]
@@ -65,7 +65,7 @@ q2=/lustre/scratch116/vr/projects/Tes1_S4_L008_R2_001.fastq.gz \
              PAT_ref.fasta:      ancestry PAT assembly 
              Input_read_1.fq.gz: gzipped HiC read 1 
              Input_read_2.fq.gz: gzipped HiC read 2
-             Output_directory:   a director contained all the binned HiC reads\n");
+             Output_head:        output 4 files as Output_head_1.MAT.gz Output_head_2.MAT.gz Output_head_1.PAT.gz Output_head_2.PAT.gz
 	    
 
 
