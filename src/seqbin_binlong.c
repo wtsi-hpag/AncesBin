@@ -293,12 +293,11 @@ void Indel_Process(char **argv,int args,int nSeq)
           offset = atoi(R_Name[i]);
           if((n_horse == 0)&&(n_donkey == 0)&&(n_misseq > 0))
           {
-          printf("Offset0: %d %s\n",offset,R_Name[i]);
+//          printf("Offset0: %d %s\n",offset,R_Name[i]);
             fprintf(namef,"%d MAT\n",offset);
             fprintf(namef2,"%d PAT\n",offset);  
           }
-          else
-            printf("Offset2: %d %s\n",offset,R_Name[i]);
+//            printf("Offset2: %d %s\n",offset,R_Name[i]);
           offset0 = atoi(R_Name[i]);
           if(n_horse>n_donkey)
           {
@@ -308,7 +307,7 @@ void Indel_Process(char **argv,int args,int nSeq)
               fprintf(namef2,"%d PAT\n",offset);
 //            printf("www: %s %s %d %f\n",R_Name[i],T_Name[i],n_horse,rate1);
           }
-          else
+          else if(n_donkey > 0) 
           {
 //            printf("%d PAT_%f_%d_%d_%d\n",offset,rate2,n_horse,n_donkey,hit_length[j-1]);
             fprintf(namef2,"%d PAT\n",offset);
@@ -321,7 +320,7 @@ void Indel_Process(char **argv,int args,int nSeq)
         {
           offset = atoi(R_Name[i]);
           offset0 = atoi(R_Name[i]);
-          printf("Offset1: %d %s\n",offset,R_Name[i]);
+//          printf("Offset1: %d %s\n",offset,R_Name[i]);
           if(strcmp(T_Name[i],"MAT") == 0)
             fprintf(namef,"%d MAT\n",offset);
           else if(strcmp(T_Name[i],"PAT") == 0)
@@ -330,7 +329,7 @@ void Indel_Process(char **argv,int args,int nSeq)
           {
             fprintf(namef,"%d MAT\n",offset);
             fprintf(namef2,"%d PAT\n",offset);
-          printf("www: %s %s %d %f\n",R_Name[i],T_Name[i],hit_score[i],0.0);
+//          printf("www: %s %s %d %f\n",R_Name[i],T_Name[i],hit_score[i],0.0);
           }
         }
 	num_hits = j-i;
