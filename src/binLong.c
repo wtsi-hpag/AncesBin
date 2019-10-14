@@ -67,6 +67,7 @@ static int n_longread = 1;
 static int run_align = 1;
 static int plot_10x = 0;
 static int min_len = 3000;
+static int rlength = 1000;
 static int sam_flag = 0;
 
 typedef struct
@@ -121,7 +122,7 @@ int main(int argc, char **argv)
          printf("Version: 4.2\n");
          printf("\n");
          
-         printf("Usage: %s -nodes 30 <input_MAT_fasta> <input_PAT_fasta> <Input_read_1>> <Input_read_2> <Output_read_file>\n",argv[0]);
+         printf("Usage: %s -nodes 30 <input_MAT_fasta> <input_PAT_fasta> <Input_data_file> <Output_directory_file>\n",argv[0]);
          printf("       nodes    (30)    - number of CPUs requested\n");
          exit(1);
     }
@@ -175,6 +176,11 @@ int main(int argc, char **argv)
        else if(!strcmp(argv[i],"-score"))
        {
          sscanf(argv[++i],"%d",&mscore);
+         args=args+2;
+       }
+       else if(!strcmp(argv[i],"-length"))
+       {
+         sscanf(argv[++i],"%d",&rlength);
          args=args+2;
        }
        else if(!strcmp(argv[i],"-longread"))
@@ -415,7 +421,7 @@ int main(int argc, char **argv)
          strcpy(R_Name[i],S_Name[i]);
 
        memset(syscmd,'\0',2000);
-       sprintf(syscmd,"%s/seqbin_shred -rlength 1000 reads_long.fasta reads_long.shred > try.out",bindir);
+       sprintf(syscmd,"%s/seqbin_shred -rlength %d reads_long.fasta reads_long.shred > try.out",bindir,rlength);
        RunSystemCommand(syscmd);
 
       printf("file: %d %d %s %s\n",clen,n_r1,R_Name[i],S_Name[i]);
