@@ -57,7 +57,7 @@ static int n_type=0;
 static int mapNumber=2;
 static int file_flag=1;
 static int tiles_flag=0;
-static int edge_set=2;
+static float sep_rate=0.3;
 static int edge_flag=0;
 static int nContig=0;
 static int max_len = 100000;
@@ -111,9 +111,9 @@ int main(int argc, char **argv)
          sscanf(argv[++i],"%d",&n_type); 
          args=args+2;
        }
-       else if(!strcmp(argv[i],"-edge"))
+       else if(!strcmp(argv[i],"-rate"))
        {
-         sscanf(argv[++i],"%d",&edge_set);
+         sscanf(argv[++i],"%f",&sep_rate);
          edge_flag=1;
          args=args+2;
        }
@@ -267,7 +267,7 @@ void Indel_Process(char **argv,int args,int nSeq)
         }
         if((j-i)>=2) 
         {
-          int kk,n_horse,n_donkey,n_misseq;
+          int kk,n_horse,n_donkey,n_misseq,n_all;
           float rate1,rate2;
           n_horse = 0;
           n_donkey = 0;
@@ -286,10 +286,11 @@ void Indel_Process(char **argv,int args,int nSeq)
              else
                n_misseq = n_misseq+hit_score[n];
           }
+          n_all = n_donkey + n_horse;
           rate1 = n_donkey;
-          rate1 = rate1/n_horse;
+          rate1 = rate1/n_all;
           rate2 = n_horse;
-          rate2 = rate2/n_donkey;
+          rate2 = rate2/n_all;
           offset = atoi(R_Name[i]);
           if((n_horse == 0)&&(n_donkey == 0)&&(n_misseq > 0))
           {
@@ -303,7 +304,7 @@ void Indel_Process(char **argv,int args,int nSeq)
           {
 //            printf("%d MAT_%f_%d_%d_%d\n",offset,rate1,n_horse,n_donkey,hit_length[j-1]);
             fprintf(namef,"%d MAT\n",offset);
-            if((rate1 >= 0.5)&&(file_flag))
+            if((rate1 >= sep_rate)&&(file_flag))
               fprintf(namef2,"%d PAT\n",offset);
 //            printf("www: %s %s %d %f\n",R_Name[i],T_Name[i],n_horse,rate1);
           }
@@ -311,7 +312,7 @@ void Indel_Process(char **argv,int args,int nSeq)
           {
 //            printf("%d PAT_%f_%d_%d_%d\n",offset,rate2,n_horse,n_donkey,hit_length[j-1]);
             fprintf(namef2,"%d PAT\n",offset);
-            if((rate2 >= 0.5)&&(file_flag))
+            if((rate2 >= sep_rate)&&(file_flag))
               fprintf(namef,"%d MAT\n",offset);
 //            printf("www: %s %s %d %f\n",R_Name[i],T_Name[i],n_donkey,rate2);
           }
