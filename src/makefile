@@ -4,7 +4,7 @@ CC= gcc
 CFLAGS= -O2 -march=x86-64 -mtune=generic
 LFLAGS= -lm -pthread -lz
 
-SOURCES=bin10X.c binHiC.c binLong.c seqbin_fastq.c seqbin_split.c seqbin_reads.c seqbin_bcodes.c seqbin_binreads.c seqbin_binlong.c seqbin_getlong.c seqbin_rename.c
+SOURCES=bin10X.c binHiC.c binLong.c seqbin_fastq.c seqbin_shred.c seqbin_split.c seqbin_reads.c seqbin_bcodes.c seqbin_binreads.c seqbin_binlong.c seqbin_getlong.c seqbin_rename.c
 
 
 OBJS = $(patsubst %.c,%.o,$(SOURCES)) fast.o
