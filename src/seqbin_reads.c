@@ -76,8 +76,6 @@ int main(int argc, char **argv)
     char *pdata;
 
     seq=NULL;
-    fflush(stdout);
-    system("ps aux | grep sreads; date");
     if(argc < 2)
     {
       printf("Usage: %s <read_name_file> <input_fastq_file> <output_fastq_file\n",argv[0]);
@@ -255,7 +253,7 @@ void Read_Index(char **argv,int args,int nRead,int nSeq)
      fasta *seqp;
      void ArraySort_String(int n,char **Pair_Name,int *brr);
      char **cmatrix(long nrl,long nrh,long ncl,long nch);
-     char **DBname,readname[Max_N_NameBase];
+     char **DBname,readname[Max_N_NameBase],*ed;
      int i_contig,i_reads,num_rd_find,stopflag;
      int *readIndex;
      int mapindex=0,n_dupreads,num_nodup;
@@ -272,10 +270,16 @@ void Read_Index(char **argv,int args,int nRead,int nSeq)
      DBname=cmatrix(0,n_reads+10,0,name_len+2);
 //     rdnames=cmatrix(0,nRead+1,0,Max_N_NameBase);
 
+    printf("reads-www: %d %d %d\n",nSeq,max_seqnam,max_lennam);
      for(j=0;j<nSeq;j++)
      {
         seqp=seq+j;
-        strcpy(DBname[j],seqp->name);
+        ed = strrchr(seqp->name,'/');
+        if((ed != NULL)&&((*(ed+1) == '1')||(*(ed+1) == '2')))
+          strncpy(DBname[j],seqp->name,strlen(seqp->name)-2);
+        else 
+          strcpy(DBname[j],seqp->name);
+//       printf("name: %d %s %c\n",j,DBname[j],*(ed+1));
         readIndex[j]=j;
      }
 
@@ -334,7 +338,7 @@ void Read_Index(char **argv,int args,int nRead,int nSeq)
         }
         i=j-1;
      }
-       printf("reads found: %d %d\n",nRead,num_rd_find);
+       printf("reads found: %d %d %d\n",nSeq,nRead,num_rd_find);
 }
 
 #define SWAP(a,b) temp=(a);(a)=b;(b)=temp;
