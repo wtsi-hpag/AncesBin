@@ -114,7 +114,7 @@ fi
 echo; echo "Compiling AncesBin sources"
 
 
-srcs=( bin10X binHiC binLong seqbin_fastq seqbin_split seqbin_reads seqbin_bcodes seqbin_binreads seqbin_binlong seqbin_getlong seqbin_rename)
+srcs=( bin10X binHiC binLong seqbin_fastq seqbin_shred seqbin_split seqbin_reads seqbin_bcodes seqbin_binreads seqbin_binlong seqbin_getlong seqbin_rename)
 
 cd $projdir/src
 make &> $projdir/src/log/sources_compilation.log
